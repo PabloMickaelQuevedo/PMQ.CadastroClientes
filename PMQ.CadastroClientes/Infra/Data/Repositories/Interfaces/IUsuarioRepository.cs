@@ -8,6 +8,6 @@ namespace PMQ.CadastroClientes.Api.Infra.Data.Repositories.Interfaces
         Task<UsuarioModel> BuscarPorId(string id);
         Task<UsuarioModel> AdicionarUsuario(UsuarioModel usuario);
         Task<UsuarioModel> AtualizarUsuario(UsuarioModel usuario, string id);
-        Task<UsuarioModel> DeletarUsuario(string id);
+        Task<bool> DeletarUsuario(string id);
     }
 }

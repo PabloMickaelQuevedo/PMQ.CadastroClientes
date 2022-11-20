@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using PMQ.CadastroClientes.Api.Infra.Data;
+using PMQ.CadastroClientes.Api.Infra.Data.Repositories;
+using PMQ.CadastroClientes.Api.Infra.Data.Repositories.Interfaces;
+
 namespace PMQ.CadastroClientes
 {
     public class Program
@@ -12,6 +17,11 @@ namespace PMQ.CadastroClientes
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<CadastroClientesDbContext>
+                (options => options.UseOracle(builder.Configuration.GetConnectionString("DataBase")));
+
+            builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             var app = builder.Build();
 
