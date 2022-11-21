@@ -4,7 +4,7 @@ using PMQ.CadastroClientes.Api.Models.Usuario;
 
 namespace PMQ.CadastroClientes.Api.Infra.Data.Mapper
 {
-    public class UsuarioMappercs : IEntityTypeConfiguration<UsuarioModel>
+    public class UsuarioMapper : IEntityTypeConfiguration<UsuarioModel>
     {
         public void Configure(EntityTypeBuilder<UsuarioModel> builder)
         {

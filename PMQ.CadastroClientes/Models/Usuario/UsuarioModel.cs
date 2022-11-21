@@ -1,7 +1,10 @@
-﻿namespace PMQ.CadastroClientes.Api.Models.Usuario
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PMQ.CadastroClientes.Api.Models.Usuario
 {
     public class UsuarioModel
     {
+        [Key]
         public string? Id { get; set; }
         public string? Nome { get; set; }
         public string? Documento { get; set; }
