@@ -11,8 +11,8 @@ using PMQ.CadastroClientes.Api.Infra.Data;
 namespace PMQ.CadastroClientes.Api.Migrations
 {
     [DbContext(typeof(CadastroClientesDbContext))]
-    [Migration("20221120222020_Initial")]
-    partial class Initial
+    [Migration("20221201111235_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,8 +25,11 @@ namespace PMQ.CadastroClientes.Api.Migrations
 
             modelBuilder.Entity("PMQ.CadastroClientes.Api.Models.Usuario.UsuarioModel", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("NVARCHAR2(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("NUMBER(10)");
+
+                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Documento")
                         .IsRequired()

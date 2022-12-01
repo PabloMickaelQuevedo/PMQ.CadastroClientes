@@ -4,8 +4,8 @@ namespace PMQ.CadastroClientes.Api.Models.Usuario
 {
     public class UsuarioModel
     {
-        [Key]
-        public string? Id { get; set; }
+        
+        public int Id { get; set; }
         public string? Nome { get; set; }
         public string? Documento { get; set; }
         public string? Email { get; set; }

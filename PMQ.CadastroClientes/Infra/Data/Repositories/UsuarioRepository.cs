@@ -11,7 +11,7 @@ namespace PMQ.CadastroClientes.Api.Infra.Data.Repositories
         {
             _dbContext = cadastroClientesDbContext;
         }
-        public async Task<UsuarioModel> BuscarPorId(string id)
+        public async Task<UsuarioModel> BuscarPorId(int id)
         {
             return await _dbContext.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -28,7 +28,7 @@ namespace PMQ.CadastroClientes.Api.Infra.Data.Repositories
             return (usuario);
         }
 
-        public async Task<UsuarioModel> AtualizarUsuario(UsuarioModel usuario, string id)
+        public async Task<UsuarioModel> AtualizarUsuario(UsuarioModel usuario, int id)
         {
             UsuarioModel usuarioPorId = await BuscarPorId(id);
 
@@ -43,14 +43,14 @@ namespace PMQ.CadastroClientes.Api.Infra.Data.Repositories
             usuarioPorId.Telefone = usuario.Telefone;
             usuarioPorId.Endereco = usuario.Endereco;
 
-            _dbContext.Usuarios.Update(usuario);
+            _dbContext.Usuarios.Update(usuarioPorId);
             await _dbContext.SaveChangesAsync();
 
             return (usuarioPorId);
         }
 
 
-        public async Task<bool> DeletarUsuario(string id)
+        public async Task<bool> DeletarUsuario(int id)
         {
             UsuarioModel usuarioPorId = await BuscarPorId(id);
 

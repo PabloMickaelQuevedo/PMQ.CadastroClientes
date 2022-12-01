@@ -23,7 +23,7 @@ namespace PMQ.CadastroClientes.Api.Controllers.Usuario
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UsuarioModel>> BuscarPorId(string id)
+        public async Task<ActionResult<UsuarioModel>> BuscarPorId(int id)
         {
             UsuarioModel usuario = await _usuarioRepository.BuscarPorId(id);
             return Ok(usuario);
@@ -36,6 +36,23 @@ namespace PMQ.CadastroClientes.Api.Controllers.Usuario
 
             return Ok(usuario);
 
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UsuarioModel>> Atualizar([FromBody] UsuarioModel usuarioModel, int id)
+        {
+            usuarioModel.Id = id;
+            UsuarioModel usuario = await _usuarioRepository.AtualizarUsuario(usuarioModel, id);
+
+            return Ok(usuario);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<UsuarioModel>> Deletar(int id)
+        {
+            bool deletado = await _usuarioRepository.DeletarUsuario(id);
+
+            return Ok(deletado);
         }
     }
 }
