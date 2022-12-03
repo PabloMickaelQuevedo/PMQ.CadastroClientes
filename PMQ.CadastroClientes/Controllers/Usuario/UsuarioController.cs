@@ -19,6 +19,7 @@ namespace PMQ.CadastroClientes.Api.Controllers.Usuario
         public async Task<ActionResult<List<UsuarioModel>>> BuscarTodosUsuarios()
         {
             List<UsuarioModel> usuarios = await _usuarioRepository.BuscarTodosUsuarios();
+
             return Ok(usuarios);
         }
 
@@ -26,6 +27,12 @@ namespace PMQ.CadastroClientes.Api.Controllers.Usuario
         public async Task<ActionResult<UsuarioModel>> BuscarPorId(int id)
         {
             UsuarioModel usuario = await _usuarioRepository.BuscarPorId(id);
+
+            if (usuario == null)
+            {
+                throw new Exception($"Usuário com o ID: {id} não foi encontrado na base de dados.");
+            }
+
             return Ok(usuario);
         }
 
